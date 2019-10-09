@@ -1,0 +1,76 @@
+{
+  "name": "generator-project-generator",
+  "version": "0.0.0",
+  "description": "A Yeoman.io Project Generator",
+  "homepage": "",
+  "author": {
+    "name": "Ollie Thomas",
+    "email": "ollie.thomas1992@gmail.com",
+    "url": "https://github.com/olliethomas1992"
+  },
+  "files": [
+    "generators"
+  ],
+  "main": "generators/index.js",
+  "keywords": [
+    "yeoman.io",
+    "project",
+    "generator",
+    "yeoman-generator"
+  ],
+  "devDependencies": {
+    "yeoman-test": "^2.0.0",
+    "yeoman-assert": "^3.1.1",
+    "eslint": "^6.0.1",
+    "prettier": "^1.18.2",
+    "husky": "^3.0.1",
+    "lint-staged": "^9.2.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-config-xo": "^0.26.0",
+    "jest": "^24.8.0"
+  },
+  "engines": {
+    "npm": ">= 4.0.0"
+  },
+  "dependencies": {
+    "yeoman-generator": "^4.1.0",
+    "chalk": "^2.4.2",
+    "yosay": "^2.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "xo",
+      "prettier"
+    ],
+    "env": {
+      "jest": true,
+      "node": true
+    },
+    "rules": {
+      "prettier/prettier": "error"
+    },
+    "plugins": [
+      "prettier"
+    ]
+  },
+  "scripts": {
+    "pretest": "eslint .",
+    "test": "jest"
+  },
+  "repository": "olliethomas1992/generator-project-generator",
+  "license": "MIT"
+}
