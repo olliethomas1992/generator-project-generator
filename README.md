@@ -13,6 +13,11 @@ npm install -g generator-project-generator
 
 Then add the project contents of the project you want to generate to: generators/app/templates
 
+```bash
+cd generators/app/templates
+git clone <YOUR_PROJECT_URL>
+```
+
 Then generate your new project:
 
 ```bash
