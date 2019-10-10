@@ -58,7 +58,7 @@ module.exports = class extends Generator {
       this.templatePath("**/*"),
       this.destinationRoot(`${this.answers.name}`),
       {
-        globOptions: { dot: true }
+        globOptions: { dot: true, ignore: ["**/.DS_Store", "**/.git/*"] }
       }
     );
 
@@ -71,6 +71,14 @@ module.exports = class extends Generator {
         yoName: this.props.yoName
       }
     );
+    this.fs.copyTpl(
+      this.templatePath("LICENSE"),
+      this.destinationPath(`LICENSE`),
+      {
+        authorEmail: this.answers.authorEmail,
+        authorUrl: this.answers.authorUrl
+      }
+    );
   }
 
   _changePackageJson() {
@@ -79,7 +87,7 @@ module.exports = class extends Generator {
       description: this.answers.description,
       author: {
         name: this.answers.authorName,
-        email: this.answers.email,
+        email: this.answers.authorEmail,
         url: this.answers.authorUrl
       }
     };
@@ -95,5 +103,9 @@ module.exports = class extends Generator {
 
   install() {
     this.npmInstall();
+  }
+
+  end() {
+    this.fs.delete("generators/app/templates/delete.txt");
   }
 };

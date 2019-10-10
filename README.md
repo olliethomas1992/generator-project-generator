@@ -1,4 +1,4 @@
-# generator-project-generator [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# generator-project-generator
 
 > A Yeoman.io Project Generator
 
@@ -11,7 +11,7 @@ npm install -g yo
 npm install -g generator-project-generator
 ```
 
-Then generate your new project:
+Then generate your new generator:
 
 ```bash
 yo project-generator

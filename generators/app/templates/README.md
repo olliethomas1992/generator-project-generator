@@ -4,10 +4,10 @@
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, link your generator:
 
 ```bash
-npm install -g yo
+npm link
 ```
 
 Then add the project contents of the project you want to generate to: generators/app/templates
@@ -17,13 +17,7 @@ cd generators/app/templates
 git clone <YOUR_PROJECT_URL>
 ```
 
-Go back to the root of the generator and link your generator:
-
-```bash
-npm link
-```
-
-Then generate your new project:
+Then generate your new project! (Where ever you keep your project / websites. eg ~/Sites):
 
 ```bash
 yo <%= yoName %>
