@@ -13,8 +13,7 @@ npm link
 Then add the project contents of the project you want to generate to: generators/app/templates
 
 ```bash
-cd generators/app/templates
-git clone <YOUR_PROJECT_URL>
+git clone <YOUR_PROJECT_URL> generators/app/templates
 ```
 
 Then generate your new project! (Where ever you keep your project / websites. eg ~/Sites):

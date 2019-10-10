@@ -17,6 +17,8 @@ Then generate your new generator:
 yo project-generator
 ```
 
+Change to the newly created generator directory follow the README.
+
 ## Getting To Know Yeoman
 
 - Yeoman has a heart of gold.
