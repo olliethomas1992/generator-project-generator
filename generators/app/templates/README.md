@@ -1,20 +1,32 @@
-# generator-project-generator [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# <%= name %> [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 
-> A Yeoman.io Project Generator
+> A Yeoman.io <%= capsName %> Generator
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-project-generator using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
 npm install -g yo
-npm install -g generator-project-generator
+```
+
+Then add the project contents of the project you want to generate to: generators/app/templates
+
+```bash
+cd generators/app/templates
+git clone <YOUR_PROJECT_URL>
+```
+
+Go back to the root of the generator and link your generator:
+
+```bash
+npm link
 ```
 
 Then generate your new project:
 
 ```bash
-yo project-generator
+yo <%= yoName %>
 ```
 
 ## Getting To Know Yeoman

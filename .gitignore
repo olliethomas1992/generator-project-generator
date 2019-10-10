@@ -1,4 +1,3 @@
 node_modules
 coverage
-generators/app/templates/*
-!generators/app/templates/delete.txt
+.vscode

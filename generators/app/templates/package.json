@@ -1,5 +1,5 @@
 {
-  "name": "generator-project-generator",
+  "name": "<%= name %>",
   "version": "0.1.0",
   "description": "A Yeoman.io Project Generator",
   "homepage": "",
@@ -34,8 +34,8 @@
     "npm": ">= 4.0.0"
   },
   "dependencies": {
-    "chalk": "^2.4.2",
     "yeoman-generator": "^4.1.0",
+    "chalk": "^2.4.2",
     "yosay": "^2.0.2"
   },
   "jest": {

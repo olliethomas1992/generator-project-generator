@@ -1,50 +1,99 @@
 "use strict";
+const path = require("path");
 const Generator = require("yeoman-generator");
+const _ = require("lodash");
+
+function makeGeneratorName(name) {
+  name = _.kebabCase(name);
+  name = name.indexOf("generator-") === 0 ? name : "generator-" + name;
+  return name;
+}
 
 module.exports = class extends Generator {
+  initializing() {
+    this.props = {};
+  }
+
   async prompting() {
     this.answers = await this.prompt([
       {
         type: "input",
-        name: "title",
-        message: "What is the name of your project?",
-        default: "ACME Project"
+        name: "name",
+        message: "Your generator name",
+        default: makeGeneratorName(path.basename(process.cwd())),
+        filter: makeGeneratorName,
+        validate: str => {
+          return str.length > "generator-".length;
+        }
       },
       {
         type: "input",
-        name: "description",
-        message: "What is the description of your project?",
-        default: `ACME Tech Test`
+        name: "authorName",
+        message: "Your name",
+        default: "Ollie Thomas"
+      },
+      {
+        type: "input",
+        name: "authorEmail",
+        message: "Your email",
+        default: "ollie.thomas1992@gmail.com"
+      },
+      {
+        type: "input",
+        name: "authorUrl",
+        message: "Your Url",
+        default: "https://github.com/olliethomas1992"
       }
     ]);
   }
 
   writing() {
-    const directory = this.answers.title
-      .split(" ")
-      .map(word => word.toLowerCase())
-      .join("-");
-
-    this._copyFiles(directory);
-    this._changePackageJson(directory);
-    this.npmInstall();
+    this._formatName();
+    this._copyFiles();
+    this._changePackageJson();
   }
 
-  _copyFiles(directory) {
+  _copyFiles() {
     this.fs.copy(
       this.templatePath("**/*"),
-      this.destinationRoot(`${directory}`),
+      this.destinationRoot(`${this.answers.name}`),
       {
         globOptions: { dot: true }
       }
     );
+
+    this.fs.copyTpl(
+      this.templatePath("README.md"),
+      this.destinationPath(`README.md`),
+      {
+        name: this.answers.name,
+        capsName: this.props.name,
+        yoName: this.props.yoName
+      }
+    );
   }
 
-  _changePackageJson(directory) {
+  _changePackageJson() {
     const pkgJson = {
-      name: directory,
-      description: this.answers.description
+      name: this.answers.name,
+      description: this.answers.description,
+      author: {
+        name: this.answers.authorName,
+        email: this.answers.email,
+        url: this.answers.authorUrl
+      }
     };
     this.fs.extendJSON(this.destinationPath("package.json"), pkgJson);
+  }
+
+  _formatName() {
+    const words = this.answers.name.split("-");
+    words.shift();
+    this.props.name = _.startCase(words.join(" "));
+    this.props.yoName = words.join("-");
+  }
+
+  install() {
+    this.npmInstall();
   }
 };
