@@ -35,7 +35,10 @@ module.exports = class extends Generator {
       this.templatePath("**/*"),
       this.destinationRoot(`${directory}`),
       {
-        globOptions: { dot: true }
+        globOptions: {
+          dot: true,
+          ignore: ["**/.DS_Store", "**/.git/**/*", "**/node_modules/**/*"]
+        }
       }
     );
   }
